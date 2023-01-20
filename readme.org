@@ -3,6 +3,7 @@
 Like /Hello, world!/ but with a weather API. A collection of various languages,
 runtimes and frameworks to test my dotfiles setup.
 
-| Project        | Description        | Editor | Dependencies                           |
-|----------------+--------------------+--------+----------------------------------------|
-| dotnet-weather | .NET 7 console app | Emacs  | direnv, asdf, asdf direnv, asfd dotnet |
+| Project            | Description        | Editor | Dependencies                           |
+|--------------------+--------------------+--------+----------------------------------------|
+| dotnet-weather     | .NET 7 console app | Emacs  | direnv, asdf, asdf direnv, asfd dotnet |
+| powershell-weather | Powershell script  | Emacs  | powershell                             |
