@@ -1,0 +1,35 @@
+* Hello, Weather!
+
+# Check source of ob-restclient to see what else is available
+# https://github.com/alf/ob-restclient.el
+
+#+name: get-weather
+#+begin_src restclient :results value
+:baseurl := (getenv "BASE_URL")
+:apikey := (getenv "WILLYWEATHER_API_KEY")
+:locationid := (getenv "LOCATION_ID")
+GET :baseurl/v2/:apikey/locations/:locationid/weather.json?forecasts=weather&observational=true
+User-Agent: eddiegroves/hello-weather
+#+end_src
+
+Takes the result directly from =get-weather=. In real life, would probably output
+the results of restclient into a example block with =:wrap example json= and
+feed that into the =jq-mode= src block so that the JSON could be inspected.
+
+# Examples of jq-mode with org-babel are here:
+# https://raw.githubusercontent.com/ljos/jq-mode/master/test/ob-jq-test.org
+
+#+begin_src jq :stdin get-weather
+{
+  temperature: .observational.observations.temperature.temperature,
+  temperatureUnits: .observational.units.temperature,
+  issueDateTime: .observational.issueDateTime
+}
+#+end_src
+
+#+RESULTS:
+: {
+:   "issueDateTime": "2023-01-22 20:00:00",
+:   "temperature": 20,
+:   "temperatureUnits": "c"
+: }
